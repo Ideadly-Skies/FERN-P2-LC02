@@ -81,6 +81,12 @@ function HomePage() {
                             <p class="text-gray-600 mb-4">{product.category ? product.category : ''}</p>
                             <button
                                 class="bg-red-500 text-black px-4 py-2 rounded hover:bg-red-700"
+                                onClick={() => {navigate(`/edit-grocery/${product.id}`)}}
+                            >
+                                Edit
+                            </button>
+                            <button
+                                class="bg-red-500 text-black px-4 py-2 rounded hover:bg-red-700"
                                 onClick={(e) => {handleDelete(e, product.id)}}
                             >
                                 Delete

@@ -29,7 +29,7 @@ const productSlice = createSlice({
 export const {setProduct, setProducts, setLoading, setError } = productSlice.actions
 
 // crud firebase 
-import { collection, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../../../config/auth";
 
 export const addProduct = (product) => async (dispatch) => {
@@ -46,6 +46,26 @@ export const addProduct = (product) => async (dispatch) => {
         // fetch the products again after adding
         dispatch(getProducts())
 
+    } catch (error) {
+        dispatch(setError(error))
+    } finally {
+        dispatch(setLoading(false))
+    }
+}
+
+export const editProduct = (product) => async (dispatch) => {
+    dispatch(setLoading(true))
+    try {
+        const docRef = doc(db, "products", product.id);
+
+        await updateDoc(docRef, {
+            name: product.name,
+            imageUrl: product.imageUrl,
+            price: product.price,
+            category: product.category
+        })
+        dispatch(getProducts())
+ 
     } catch (error) {
         dispatch(setError(error))
     } finally {

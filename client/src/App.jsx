@@ -3,6 +3,7 @@ import './App.css'
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import AddProductPage from "./pages/AddProductPage";
+import EditProductPage from "./pages/EditProductPage";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/add-grocery",
         element: <AddProductPage/>
+      },
+      {
+        path: "/edit-grocery/:id",
+        element: <EditProductPage/>
       }
     ]
   },
