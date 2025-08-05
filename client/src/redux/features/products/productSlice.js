@@ -29,7 +29,7 @@ const productSlice = createSlice({
 export const {setProduct, setProducts, setLoading, setError } = productSlice.actions
 
 // crud firebase 
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../../../config/auth";
 
 export const addProduct = (product) => async (dispatch) => {
@@ -72,6 +72,18 @@ export const getProducts = () => async (dispatch) => {
     } finally {
         dispatch(setLoading(false))
     }
+}
+
+// delete product
+export const deleteProduct = (id) => async (dispatch) => {
+    dispatch(setLoading(true))
+    try {
+        await deleteDoc(doc(db, "products", id))
+        dispatch(getProducts())
+    } catch (error) {
+        dispatch(setError(error)) 
+    } 
+    dispatch(setLoading(false))
 }
 
 export default productSlice.reducer
