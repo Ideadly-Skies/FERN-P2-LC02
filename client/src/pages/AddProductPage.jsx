@@ -1,6 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
+
 
 function AddProductPage() {
+    const navigate = useNavigate()
+
   return (
     <>
         <nav class="bg-white shadow-lg">
@@ -8,8 +12,8 @@ function AddProductPage() {
                 <div class="flex justify-between items-center py-4">
                     <div class="text-lg font-semibold text-gray-800">Brand</div>
                     <div>
-                        <a href="index.html" class="text-gray-800 mx-2">Home</a>
-                        <a href="add.html" class="text-gray-800 mx-2">Add</a>
+                        <button onClick={() => {navigate("/")}} class="text-gray-800 mx-2">Home</button>
+                        <button class="text-gray-800 mx-2">Add</button>
                     </div>
                 </div>
             </div>
