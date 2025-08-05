@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { deleteProduct, getProducts } from '../redux/features/products/productSlice'
 import { useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
+import currencyFormatter from "../utils/currencyFormatter"
 
 function HomePage() {
     const navigate = useNavigate()
@@ -58,7 +59,7 @@ function HomePage() {
                         <div class="text-lg font-semibold text-gray-800">Brand</div>
                         <div>
                             <button class="text-gray-800 mx-2">Home</button>
-                            <button onClick={() => navigate("/products/add")} class="text-gray-800 mx-2">Add</button>
+                            <button onClick={() => navigate("/add-grocery")} class="text-gray-800 mx-2">Add</button>
                         </div>
                     </div>
                 </div>
@@ -76,7 +77,7 @@ function HomePage() {
                                 class="w-full h-32 object-cover mb-4 rounded"
                             />
                             <h3 class="text-lg font-semibold mb-2">{product.name}</h3>
-                            <p class="text-gray-700 mb-2">{product.price}</p>
+                            <p class="text-gray-700 mb-2">{currencyFormatter(product.price)}</p>
                             <p class="text-gray-600 mb-4">{product.category ? product.category : ''}</p>
                             <button
                                 class="bg-red-500 text-black px-4 py-2 rounded hover:bg-red-700"
